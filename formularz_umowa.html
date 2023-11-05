@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formularz PDF</title>
+</head>
+<body>
+    <form id="pdfForm">
+        <label for="name">Imię:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <button type="button" onclick="generatePDF()">Generuj PDF</button>
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script>
+        function generatePDF() {
+            // Pobierz dane z formularza
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+
+            // Inicjalizacja dokumentu PDF
+            const doc = new jsPDF();
+
+            // Dodaj zawartość do dokumentu PDF
+            doc.text(20, 20, "Formularz PDF");
+            doc.text(20, 30, "Imię: " + name);
+            doc.text(20, 40, "Email: " + email);
+
+            // Zapisz dokument PDF
+            doc.save("FormularzPDF.pdf");
+        }
+    </script>
+</body>
+</html>
